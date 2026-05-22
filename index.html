@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Git 소개, 설치 방법, 주요 명령어와 사용법을 정리한 가이드">
+  <title>Git 가이드 — 소개·설치·사용법</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <a class="skip-link" href="#main">본문으로 건너뛰기</a>
+
+  <header class="site-header">
+    <div class="header-inner">
+      <p class="logo" aria-hidden="true">
+        <span class="logo-icon">⎇</span>
+        <span class="logo-text">Git Guide</span>
+      </p>
+      <nav class="nav" aria-label="목차">
+        <a href="#intro">소개</a>
+        <a href="#install">설치</a>
+        <a href="#config">설정</a>
+        <a href="#basics">기본</a>
+        <a href="#branch">브랜치</a>
+        <a href="#remote">원격</a>
+        <a href="#tips">팁</a>
+      </nav>
+    </div>
+  </header>
+
+  <section class="hero" aria-labelledby="hero-title">
+    <div class="hero-inner">
+      <h1 id="hero-title">Git으로 버전을 관리하세요</h1>
+      <p class="hero-lead">
+        Git은 파일 변경 이력을 기록하고, 여러 사람이 같은 프로젝트를
+        안전하게 협업할 수 있게 해 주는 <strong>분산 버전 관리 시스템</strong>입니다.
+      </p>
+      <div class="hero-actions">
+        <a class="btn btn-primary" href="#install">설치 방법 보기</a>
+        <a class="btn btn-secondary" href="#basics">명령어 빠르게 보기</a>
+      </div>
+    </div>
+  </section>
+
+  <div class="layout">
+    <aside class="sidebar" aria-label="페이지 목차">
+      <nav class="toc">
+        <p class="toc-title">목차</p>
+        <ol>
+          <li><a href="#intro">Git이란?</a></li>
+          <li><a href="#why">왜 쓰나요?</a></li>
+          <li><a href="#install">설치 방법</a></li>
+          <li><a href="#config">초기 설정</a></li>
+          <li><a href="#basics">기본 사용법</a></li>
+          <li><a href="#workflow">일반적인 흐름</a></li>
+          <li><a href="#branch">브랜치와 병합</a></li>
+          <li><a href="#remote">원격 저장소</a></li>
+          <li><a href="#tips">실무 팁</a></li>
+        </ol>
+      </nav>
+    </aside>
+
+    <main id="main" class="content">
+      <article id="intro" class="section">
+        <h2>Git이란?</h2>
+        <p>
+          Git은 2005년 리눅스 커널 개발을 위해 탄생한 오픈 소스 버전 관리 도구입니다.
+          프로젝트 폴더 안의 <code>.git</code> 디렉터리에 커밋(스냅샷) 기록이 저장되며,
+          각 개발자 PC에 전체 이력이 복제될 수 있어 <em>분산형</em>이라고 부릅니다.
+        </p>
+        <div class="card-grid">
+          <div class="card">
+            <h3>저장소(Repository)</h3>
+            <p>프로젝트와 그 변경 이력이 담긴 공간입니다. 로컬 또는 GitHub 같은 원격에 둘 수 있습니다.</p>
+          </div>
+          <div class="card">
+            <h3>커밋(Commit)</h3>
+            <p>특정 시점의 파일 상태를 메시지와 함께 저장한 기록 단위입니다.</p>
+          </div>
+          <div class="card">
+            <h3>브랜치(Branch)</h3>
+            <p>기능 개발·버그 수정 등을 본선과 분리해 진행할 수 있는 독립된 작업선입니다.</p>
+          </div>
+        </div>
+      </article>
+
+      <article id="why" class="section">
+        <h2>왜 Git을 쓰나요?</h2>
+        <ul class="check-list">
+          <li>언제, 무엇이, 왜 바뀌었는지 추적할 수 있습니다.</li>
+          <li>실험용 브랜치로 안전하게 시도한 뒤 병합할 수 있습니다.</li>
+          <li>충돌을 비교·해결하며 여러 명이 동시에 작업할 수 있습니다.</li>
+          <li>오프라인에서도 커밋·브랜치 작업이 가능합니다.</li>
+        </ul>
+        <p class="note">
+          GitHub, GitLab, Bitbucket 등은 Git 저장소를 호스팅하는 서비스이며,
+          Git 자체와는 별개입니다. Git을 익히면 어떤 호스팅에도 같은 방식으로 사용할 수 있습니다.
+        </p>
+      </article>
+
+      <article id="install" class="section">
+        <h2>설치 방법</h2>
+        <p>공식 배포판은 <a href="https://git-scm.com/" rel="noopener noreferrer">git-scm.com</a>에서 확인할 수 있습니다.</p>
+
+        <div class="tabs" role="tablist" aria-label="운영체제별 설치">
+          <button type="button" role="tab" aria-selected="true" aria-controls="panel-win" id="tab-win" data-tab="win">Windows</button>
+          <button type="button" role="tab" aria-selected="false" aria-controls="panel-mac" id="tab-mac" data-tab="mac">macOS</button>
+          <button type="button" role="tab" aria-selected="false" aria-controls="panel-linux" id="tab-linux" data-tab="linux">Linux</button>
+        </div>
+
+        <div id="panel-win" class="tab-panel" role="tabpanel" aria-labelledby="tab-win">
+          <ol>
+            <li><a href="https://git-scm.com/download/win" rel="noopener noreferrer">Git for Windows</a> 설치 프로그램을 받습니다.</li>
+            <li>설치 마법사에서 기본 옵션을 유지해도 대부분의 경우 충분합니다.</li>
+            <li>설치 후 <strong>Git Bash</strong> 또는 PowerShell·명령 프롬프트를 엽니다.</li>
+          </ol>
+          <p>또는 <code>winget</code>으로 설치할 수 있습니다.</p>
+          <pre><code>winget install --id Git.Git -e --source winget</code></pre>
+        </div>
+
+        <div id="panel-mac" class="tab-panel hidden" role="tabpanel" aria-labelledby="tab-mac" hidden>
+          <p>Xcode Command Line Tools에 Git이 포함되거나, Homebrew로 최신 버전을 설치합니다.</p>
+          <pre><code># Homebrew가 있다면
+brew install git</code></pre>
+          <p>공식 인스톨러: <a href="https://git-scm.com/download/mac" rel="noopener noreferrer">macOS용 Git</a></p>
+        </div>
+
+        <div id="panel-linux" class="tab-panel hidden" role="tabpanel" aria-labelledby="tab-linux" hidden>
+          <p>배포판 패키지 관리자를 사용합니다.</p>
+          <pre><code># Debian / Ubuntu
+sudo apt update &amp;&amp; sudo apt install git
+
+# Fedora
+sudo dnf install git
+
+# Arch
+sudo pacman -S git</code></pre>
+        </div>
+
+        <h3>설치 확인</h3>
+        <p>터미널에서 다음을 실행해 버전이 출력되면 설치가 완료된 것입니다.</p>
+        <pre><code>git --version</code></pre>
+      </article>
+
+      <article id="config" class="section">
+        <h2>초기 설정</h2>
+        <p>커밋에 기록될 이름과 이메일을 한 번 설정합니다. 전역(<code>--global</code>) 설정이 일반적입니다.</p>
+        <pre><code>git config --global user.name "홍길동"
+git config --global user.email "you@example.com"</code></pre>
+        <p>기본 편집기, 줄바꿈 처리 등은 필요할 때 추가로 설정합니다.</p>
+        <pre><code># Windows에서 줄바꿈 자동 변환 (권장)
+git config --global core.autocrlf true
+
+# macOS / Linux
+git config --global core.autocrlf input
+
+# 설정 목록 확인
+git config --global --list</code></pre>
+      </article>
+
+      <article id="basics" class="section">
+        <h2>기본 사용법</h2>
+        <p>새 프로젝트를 시작하거나, 이미 있는 폴더를 Git으로 관리하는 두 가지 경로가 있습니다.</p>
+
+        <h3>새 저장소 만들기</h3>
+        <pre><code>mkdir my-project &amp;&amp; cd my-project
+git init
+# 파일 작성 후
+git add .
+git commit -m "첫 커밋"</code></pre>
+
+        <h3>기존 원격 저장소 복제</h3>
+        <pre><code>git clone https://github.com/username/repo.git
+cd repo</code></pre>
+
+        <h3>자주 쓰는 명령어</h3>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th scope="col">명령어</th>
+                <th scope="col">설명</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><code>git status</code></td>
+                <td>변경·스테이징 상태 확인</td>
+              </tr>
+              <tr>
+                <td><code>git add &lt;파일&gt;</code></td>
+                <td>다음 커밋에 포함할 변경 스테이징</td>
+              </tr>
+              <tr>
+                <td><code>git commit -m "메시지"</code></td>
+                <td>스테이징된 내용을 커밋</td>
+              </tr>
+              <tr>
+                <td><code>git log</code></td>
+                <td>커밋 이력 보기 (<code>--oneline</code>으로 요약)</td>
+              </tr>
+              <tr>
+                <td><code>git diff</code></td>
+                <td>작업 트리와 스테이징/커밋 간 차이 보기</td>
+              </tr>
+              <tr>
+                <td><code>git restore &lt;파일&gt;</code></td>
+                <td>미커밋 변경 되돌리기 (구버전: checkout)</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <figure class="diagram" aria-labelledby="states-caption">
+          <figcaption id="states-caption">파일의 세 가지 상태</figcaption>
+          <div class="state-flow">
+            <span class="state">작업 디렉터리<br><small>수정함</small></span>
+            <span class="arrow" aria-hidden="true">→ add →</span>
+            <span class="state">스테이징 영역<br><small>커밋 대기</small></span>
+            <span class="arrow" aria-hidden="true">→ commit →</span>
+            <span class="state">저장소<br><small>기록됨</small></span>
+          </div>
+        </figure>
+      </article>
+
+      <article id="workflow" class="section">
+        <h2>일반적인 작업 흐름</h2>
+        <ol class="workflow-steps">
+          <li>파일을 수정한다.</li>
+          <li><code>git status</code>로 변경을 확인한다.</li>
+          <li><code>git add</code>로 커밋할 내용을 고른다.</li>
+          <li><code>git commit</code>으로 로컬에 기록한다.</li>
+          <li>원격이 있다면 <code>git push</code>로 업로드한다.</li>
+        </ol>
+        <pre><code>git status
+git add src/app.js
+git commit -m "로그인 폼 유효성 검사 추가"
+git push</code></pre>
+        <p>
+          커밋 메시지는 <strong>무엇을, 왜</strong> 바꿨는지 짧고 명확하게 쓰는 것이 좋습니다.
+          예: <code>fix: 빈 이메일 제출 시 400 반환</code>
+        </p>
+      </article>
+
+      <article id="branch" class="section">
+        <h2>브랜치와 병합</h2>
+        <p>기능 단위로 브랜치를 만들면 <code>main</code>(또는 <code>master</code>)을 안정적으로 유지할 수 있습니다.</p>
+        <pre><code>git branch feature/login      # 브랜치 생성
+git switch feature/login      # 브랜치로 이동 (구버전: checkout)
+# 작업 후 커밋
+git switch main
+git merge feature/login       # main에 병합
+git branch -d feature/login   # 병합된 브랜치 삭제</code></pre>
+        <p>
+          같은 줄을 두 사람이 수정하면 <strong>충돌(conflict)</strong>이 날 수 있습니다.
+          충돌 표시를 해결한 뒤 <code>git add</code> → <code>git commit</code>으로 병합을 마칩니다.
+        </p>
+      </article>
+
+      <article id="remote" class="section">
+        <h2>원격 저장소</h2>
+        <p>GitHub 등과 연동할 때 자주 쓰는 명령입니다.</p>
+        <pre><code># 원격 추가 (clone 시에는 자동)
+git remote add origin https://github.com/username/repo.git
+
+# 원격 이름·URL 확인
+git remote -v
+
+# 가져오기 (병합 없이 이력만)
+git fetch origin
+
+# 가져와서 현재 브랜치에 병합
+git pull origin main
+
+# 로컬 커밋 업로드
+git push -u origin main</code></pre>
+        <p>
+          <code>-u</code>(upstream)는 이후 <code>git push</code>, <code>git pull</code>만으로
+          같은 원격·브랜치를 사용하게 해 줍니다.
+        </p>
+      </article>
+
+      <article id="tips" class="section">
+        <h2>실무 팁</h2>
+        <ul>
+          <li><strong>.gitignore</strong> — 빌드 산출물, <code>node_modules</code>, 비밀키 등은 커밋하지 않도록 목록을 둡니다.</li>
+          <li><strong>작은 커밋</strong> — 논리 단위로 나누면 리뷰와 되돌리기가 쉬워집니다.</li>
+          <li><strong>push 전 pull</strong> — 원격 변경을 먼저 받아 충돌을 줄입니다.</li>
+          <li><strong>도움말</strong> — <code>git help commit</code>처럼 명령별 문서를 볼 수 있습니다.</li>
+        </ul>
+        <div class="resources">
+          <h3>더 알아보기</h3>
+          <ul>
+            <li><a href="https://git-scm.com/doc" rel="noopener noreferrer">공식 문서</a></li>
+            <li><a href="https://learngitbranching.js.org/?locale=ko" rel="noopener noreferrer">Learn Git Branching (한국어)</a></li>
+            <li><a href="https://docs.github.com/ko/get-started/using-git" rel="noopener noreferrer">GitHub — Git 사용하기</a></li>
+          </ul>
+        </div>
+      </article>
+    </main>
+  </div>
+
+  <footer class="site-footer">
+    <p>Git 가이드 — 프레임워크 없이 HTML, CSS, JavaScript만 사용했습니다.</p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
